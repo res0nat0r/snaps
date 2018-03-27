@@ -1,0 +1,26 @@
+name: nomad
+version: 0.7.1
+summary: Easily Deploy Applicatrions at Any Scale
+description: |
+  Nomad is a single binary that schedules applications and services on Linux,
+  Windows, and Mac. It is an open source scheduler that uses a declarative job
+  file for scheduling virtualized, containerized, and standalone applications.
+type: app
+grade: stable
+architectures: [amd64]
+confinement: strict
+
+apps:
+  nomad:
+    command: nomad
+    plugs:
+      - network
+      - home
+
+parts:
+  nomad:
+    plugin: dump
+    source: https://releases.hashicorp.com/nomad/0.7.1/nomad_0.7.1_linux_amd64.zip
+    source-checksum: sha256/72b32799c2128ed9d2bb6cbf00c7600644a8d06c521a320e42d5493a5d8a789a
+    organize:
+      nomad: bin/nomad

@@ -1,0 +1,30 @@
+name: nmap
+version: git
+summary: Network Mapper
+description: |
+  Nmap ("Network Mapper") is a free and open source utility for
+  network discovery and security auditing.
+type: app
+grade: stable
+confinement: strict
+
+apps:
+  nmap:
+    command: nmap
+    plugs:
+      - network
+      - home
+
+parts:
+  nmap:
+    source: git://github.com/nmap/nmap.git
+    source-depth: 1
+    plugin: autotools
+    build-packages:
+      - g++
+    filesets:
+      bin: [ bin/nmap, bin/ncat, bin/nping ]
+      man: [ share/man ]
+    prime:
+      - $bin
+      - $man

@@ -1,0 +1,25 @@
+name: consul-res0nat0r
+version: 1.0.6
+summary: Service Discovery and Configuration Made Easy
+description: |
+  Consul makes it simple for services to register themselves and to discover other
+  services via a DNS or HTTP interface
+type: app
+grade: stable
+architectures: [amd64]
+confinement: strict
+
+apps:
+  consul:
+    command: consul
+    plugs:
+      - network
+      - home
+
+parts:
+  nomad:
+    plugin: dump
+    source: https://releases.hashicorp.com/consul/1.0.6/consul_1.0.6_linux_amd64.zip
+    source-checksum: sha256/bcc504f658cef2944d1cd703eda90045e084a15752d23c038400cf98c716ea01
+    organize:
+      consul: bin/consul
