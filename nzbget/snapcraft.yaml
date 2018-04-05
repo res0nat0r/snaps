@@ -1,0 +1,23 @@
+name: nmap
+version: latest
+summary: NZBget
+description: NZB Getter
+type: app
+grade: stable
+confinement: strict
+
+apps:
+  nzbget:
+    command: nzbget
+    plugs:
+      - network
+      - home
+
+parts:
+  nzbget:
+    plugin: dump
+    install: |
+      wget https://nzbget.net/download/nzbget-latest-bin-linux.run && \
+      sh ./nzbget-latest-bin-linux.run
+    prime:
+      - nzbget/nzbget
